@@ -1,7 +1,7 @@
 <?php
 
-include_once "config/constants.php";
-include_once "config/db.php";
+require_once "config/constants.php";
+require_once "config/db.php";
 
 if (isset($_GET['controller'])) {
     $controller = getControllerPath($_GET['controller']);
