@@ -9,6 +9,7 @@ In this workshop you will learn how to create a project using MVC Pattern withou
 - [Getting Started](#getting-started)
 - [Dependencies](#dependencies)
 - [Contents](#contents)
+- [1. Prepare the constants](#1-prepare-the-constants)
 - [Resources](#resources)
 
 ## Getting Started
@@ -24,6 +25,14 @@ $ git clone https://github.com/assembler-school/repository-name
 - [Bootstrap](https://getbootstrap.com/)
 
 ## Contents
+
+When you're creating a MVC project from scratch it's very important to follow correctly the creation steps in order to understand the execution flow. That is why in this workshop we have detailed the steps to follow for a correct operation of the application:
+
+## 1. Prepare the constants
+
+> In order to call dynamically all the CSS, JS and PHP files, we must configure our project constants that will be accessed during the execution of the application.
+
+### `baseConstants.php`
 
 ## Resources
 
