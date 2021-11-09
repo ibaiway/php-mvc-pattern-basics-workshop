@@ -5,9 +5,7 @@ function conn()
     try {
         $connection = "mysql:host=" . HOST . ";"
             . "dbname=" . DB . ";"
-            . "user=" . USER . ";"
-            . "password=" . PASSWORD . ";"
-            . "charset=" . CHARSET;
+            . "charset=" . CHARSET . ";";
 
         $options = [
             PDO::ATTR_ERRMODE           =>  PDO::ERRMODE_EXCEPTION,

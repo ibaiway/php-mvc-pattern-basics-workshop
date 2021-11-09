@@ -21,6 +21,8 @@ function getAllEmployees()
     $employees = get();
     if (isset($employees)) {
         require_once VIEWS . "/employee/employeeDashboard.php";
+    } else {
+        error("There is a database error, try again.");
     }
 }
 

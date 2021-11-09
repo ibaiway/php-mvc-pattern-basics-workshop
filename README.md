@@ -13,6 +13,8 @@ In this workshop you will learn how to create a project using MVC Pattern withou
 - [2. Application entry point](#2-application-entry-point)
 - [3. Main Views](#3-main-views)
 - [4. Controllers](#4-controllers)
+- [5. Models](#5-models)
+- [6. Views](#6-views)
 - [Resources](#resources)
 
 ## Getting Started
@@ -182,6 +184,183 @@ This view will be always loaded when the user specifies a bad parameter. As you 
 ## 4. Controllers
 
 > This are the PHP files that are called in the [index.php](./index.php) file. Here we will implement the functionalities of each controller.
+
+### `./controllers/employeeController.php`
+
+Before we start, we need to require the model, that will be responsible of calling the database queries to obtain or modify the information. We will create the model later.
+
+```php
+<?php
+
+require_once MODELS . "employeeModel.php";
+```
+
+Now, we know that this is the controller that the user wants to load, but we also need to know which function to execute.
+
+```php
+$action = "";
+
+if (isset($_REQUEST["action"])) {
+    $action = $_REQUEST["action"];
+}
+
+if (function_exists($action)) {
+    call_user_func($action, $_REQUEST);
+} else {
+    error("Invalid user action");
+}
+```
+
+We are going to create the `getAllEmployees` function, as you can see, there is a `get()` function that is not created yet, this is a function of the model that we will create in the following step.
+
+```php
+/* ~~~ CONTROLLER FUNCTIONS ~~~ */
+
+function getAllEmployees()
+{
+    $employees = get();
+    if (isset($employees)) {
+        require_once VIEWS . "/employee/employeeDashboard.php";
+    } else {
+        error("There is a database error, try again.");
+    }
+}
+```
+
+Also we create the `error` function in order to load the error view when something goes wrong.
+
+```php
+function error($errorMsg)
+{
+    require_once VIEWS . "/error/error.php";
+}
+```
+
+## 5. Models
+
+> As we said before, the models are responsible of calling the database queries to obtain or modify the information.
+
+### 5.1. Connection to the database
+
+In order to send queries to the database, we need to create the connection.
+
+#### 5.1.1. `./models/helper/dbConnection.php`
+
+```php
+<?php
+
+// Create connection
+function conn()
+{
+    try {
+        $connection = "mysql:host=" . HOST . ";"
+            . "dbname=" . DB . ";"
+            . "charset=" . CHARSET . ";";
+
+        $options = [
+            PDO::ATTR_ERRMODE           =>  PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_EMULATE_PREPARES  => FALSE,
+        ];
+
+        $pdo = new PDO($connection, USER, PASSWORD, $options);
+
+        return $pdo;
+    } catch (PDOException $e) {
+        require_once(VIEWS . "/error/error.php");
+    }
+}
+```
+
+### 5.2. `./models/employeeModel.php
+
+First, we must require the previous database connection file in order to execute the database queries.
+
+```php
+require_once("helper/dbConnection.php");
+```
+
+In this model we will create the `get` function that we are executing in the `employeeController.php`.
+
+```php
+function get()
+{
+    $query = conn()->prepare("SELECT e.id, e.name, e.email, g.name as 'gender', e.city, e.age, e.phone_number
+    FROM employees e
+    INNER JOIN genders g ON e.gender_id = g.id
+    ORDER BY e.id ASC;");
+
+    try {
+        $query->execute();
+        $employees = $query->fetchAll();
+        return $employees;
+    } catch (PDOException $e) {
+        return [];
+    }
+}
+```
+
+## 6. Views
+
+> View are the frontend part of the MVC pattern. Inside them we should create all the necessary code to show the information to the user.
+
+### 6.1. `./views/employee/employeeDashboard.php`
+
+This will be the file that shows all the records of the database.
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <h1>Employee Dashboard page!</h1>
+    <style type="text/css">
+
+    </style>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="tg-0pky">ID</th>
+                <th class="tg-0pky">Name</th>
+                <th class="tg-0lax">Email</th>
+                <th class="tg-0lax">Gender</th>
+                <th class="tg-0lax">City</th>
+                <th class="tg-0lax">Age</th>
+                <th class="tg-0lax">Phone Number</th>
+                <th class="tg-0lax">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($employees as $index => $employee) {
+                echo "<tr>";
+                echo "<td class='tg-0lax'>" . $employee["id"] . "</td>";
+                echo "<td class='tg-0lax'>" . $employee["name"] . "</td>";
+                echo "<td class='tg-0lax'>" . $employee["email"] . "</td>";
+                echo "<td class='tg-0lax'>" . $employee["gender"] . "</td>";
+                echo "<td class='tg-0lax'>" . $employee["city"] . "</td>";
+                echo "<td class='tg-0lax'>" . $employee["age"] . "</td>";
+                echo "<td class='tg-0lax'>" . $employee["phone_number"] . "</td>";
+                echo "<td colspan='2' class='tg-0lax'>
+                <a class='btn btn-secondary' href='?controller=employee&action=getEmployee&id=" . $employee["id"] . "'>Edit</a>
+                <a class='btn btn-danger' href='?controller=employee&action=deleteEmployee&id=" . $employee["id"] . "'>Delete</a>
+                </td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+    <a id="home" class="btn btn-primary" href="?controller=employee&action=createEmployee">Create</a>
+    <a id="home" class="btn btn-secondary" href="./">Back</a>
+</body>
+</html>
+```
 
 ## Resources
 
