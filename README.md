@@ -1,8 +1,8 @@
-`tag1` `#tag2` `#tag3` `#master-in-software-engineering`
+`#patterns` `#mvc` `#php` `#master-in-software-engineering`
 
-# Assembler School: [WORKSHOP-NAME] - Workshop <!-- omit in toc -->
+# Assembler School: PHP MVC Pattern Basics - Workshop <!-- omit in toc -->
 
-In this workshop you will learn how to ...
+In this workshop you will learn how to create a project using MVC Pattern without OOP. In this first approach, you will understand how the pattern works and implement it in a project created from scratch.
 
 ## Table of Contents <!-- omit in toc -->
 
@@ -20,6 +20,8 @@ $ git clone https://github.com/assembler-school/repository-name
 ```
 
 ## Dependencies
+
+- [Bootstrap](https://getbootstrap.com/)
 
 ## Contents
 
