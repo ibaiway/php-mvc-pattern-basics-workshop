@@ -4,56 +4,61 @@ CREATE DATABASE IF NOT EXISTS mvc_basics;
 USE mvc_basics;
 
 -- Creation of the tables
-CREATE TABLE genders(
+CREATE TABLE drivers(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-name VARCHAR(25) NOT NULL
-);
-
-CREATE TABLE employees(
-id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-name VARCHAR(50) NOT NULL,
-last_name VARCHAR(50),
-email VARCHAR(50) UNIQUE,
-gender_id INT NOT NULL,
-avatar VARCHAR(200),
-age INT(2) NULL,
+name VARCHAR(25) NOT NULL,
 phone_number INT(9) NOT NULL,
-city VARCHAR(50),
-street_address VARCHAR (100),
-state VARCHAR(50),
-postal_code INT(5),
-FOREIGN KEY (gender_id) REFERENCES genders(id) 
+license_plate VARCHAR(10)
 );
 
-CREATE TABLE hobbies(
+CREATE TABLE clients(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-name VARCHAR(50) NOT NULL,
-type ENUM("Indoor", "Outdoor")
+name VARCHAR(25) NOT NULL,
+email VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE trips(
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+driver_id INT NOT NULL,
+client_id INT NOT NULL,
+length INT NOT NULL,
+date DATE NOT NULL,
+FOREIGN KEY (driver_id)  REFERENCES drivers (id)    ON DELETE CASCADE,
+FOREIGN KEY (client_id) REFERENCES clients (id) ON DELETE CASCADE
+);
+
 
 -- Insert of data
-INSERT INTO genders (name) 
-VALUES 
-("Male"),("Female"),("Other");
-
-INSERT INTO employees (name, last_name, email, gender_id, avatar, age, phone_number, city, street_address, state, postal_code)
-VALUES 
-("Rack", "Lei", "jackon@network.com", 1, "https://pbs.twimg.com/profile_images/587511475440332800/_Y3Wl3PL.jpg", 24, 738362767, "San Jone", "126", "CA", "39221"),
-("John", "Doe", "jhondoe@foo.com", 1, "https://pbs.twimg.com/profile_images/1094979667143069696/QrD0ovrh.jpg", 34, 638362767, "New York", "126", "CA", "39221"),
-("Leila", "Mills", "mills@leila.com", 2, "https://m.media-amazon.com/images/M/MV5BMzI5NDIzNTQ1Nl5BMl5BanBnXkFtZTgwMjQ0Mzc1MTE@._V1_UY256_CR4,0,172,256_AL_.jpg", 26, 638362767, "San Diego", "126", "CA", "39671"),
-("Richard", "Desmond", "dismond@foo.com", 1, NULL, 30, 638362767, "New York", "126", "CA", "85716"),
-("Susan", "Smith", "susanmith@baz.com", 2, NULL, 28, 638362767, "New York", "126", "CA", "09563"),
-("Brad", "Simpson", "brad@foo.com", 1, NULL, 40, 638362767, "Atlanta", "126", "GEO", "01928"),
-("Neil", "Walker", "walkerneil@baz.com", 1, NULL, 38, 638362767, "New York", "126", "CA", "17345"),
-("Rack", "Jackon", "rack@network.com", 1, NULL, 22, 638362767, "New York", "126", "CA", "68573"),
-("Homer", "Eustasio", "homer@gmail.com", 1, NULL, 34, 638362767, "New York", "126", "CA", "09857"),
-("Sandra", "Foo", "sandra@foo.com", 2, NULL, 34, 638362767, "New York", "126", "CA", "09274");
-
-INSERT INTO hobbies (name, type)
+INSERT INTO drivers(name, phone_number, license_plate)
 VALUES
-("3D Printing", "Indoor"),
-("Astrology", "Indoor"),
-("Karaoke", "Indoor"),
-("Airsoft", "Outdoor"),
-("Archery", "Outdoor"),
-("Tourism", "Outdoor");
+("Paco","333444555","XJK1234"),
+("Marta","777444222","UJH6582"),
+("Juan","333444555","HRJ4756"),
+("Miguel","111444777","MKJ1368"),
+("Alberto","666999888","FDR4856");
+
+INSERT INTO clients(name, email)
+VALUES
+("Mikel","mikel@gmail.com"),
+("Ibai","ibai@gmail.com"),
+("Pau","pau@gmail.com"),
+("Luis","luis@gmail.com"),
+("Adrian","adrian@gmail.com");
+
+INSERT INTO trips(driver_id, client_id, length, date)
+VALUES
+(1,3,6,"2020-05-04"),
+(1,2,6,"2020-06-14"),
+(1,1,6,"2020-04-13"),
+(2,4,6,"2020-08-18"),
+(2,5,6,"2020-05-19"),
+(2,5,6,"2020-04-22"),
+(3,4,6,"2020-03-05"),
+(3,1,6,"2020-06-25"),
+(3,2,6,"2020-07-14"),
+(4,3,6,"2020-07-26"),
+(4,1,6,"2020-09-23"),
+(4,5,6,"2020-04-12"),
+(5,4,6,"2020-05-14"),
+(5,1,6,"2020-03-09"),
+(5,2,6,"2020-06-10");
