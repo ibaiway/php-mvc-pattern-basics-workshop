@@ -33,7 +33,7 @@
                 echo "<td class='tg-0lax'>" . $driver["license_plate"] . "</td>";
                 echo "<td colspan='2' class='tg-0lax'>
                 <a class='btn btn-secondary' href='?controller=driver&action=getDriver&id=" . $driver["id"] . "'>Edit</a>
-                <a class='btn btn-danger' href='?controller=driver&action=deletedriver&id=" . $driver["id"] . "'>Delete</a>
+                <a class='btn btn-danger' href='?controller=driver&action=deleteDriver&id=" . $driver["id"] . "'>Delete</a>
                 </td>";
                 echo "</tr>";
             }

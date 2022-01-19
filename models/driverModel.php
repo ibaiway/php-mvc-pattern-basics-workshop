@@ -3,7 +3,7 @@
 require_once("helper/dbConnection.php");
 
 function get(){
-    $query = conn()->prepare(("SELECT * FROM drivers"));
+    $query = conn()->prepare("SELECT * FROM drivers");
 
     try {
         $query->execute();
