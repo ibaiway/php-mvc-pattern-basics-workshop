@@ -19,7 +19,7 @@
                 <th class="tg-0pky">ID</th>
                 <th class="tg-0pky">Name</th>
                 <th class="tg-0lax">email</th>
-
+                <th class="tg-0lax">Trips made</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +29,7 @@
                 echo "<td class='tg-0lax'>" . $client["id"] . "</td>";
                 echo "<td class='tg-0lax'>" . $client["name"] . "</td>";
                 echo "<td class='tg-0lax'>" . $client["email"] . "</td>";
+                echo "<td class='tg-0lax'>" . $client["trip_count"] . "</td>";
                 echo "<td colspan='2' class='tg-0lax'>
                 <a class='btn btn-secondary' href='?controller=client&action=getClient&id=" . $client["id"] . "'>Edit</a>
                 <a class='btn btn-danger' href='?controller=client&action=deleteClient&id=" . $client["id"] . "'>Delete</a>
