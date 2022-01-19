@@ -20,9 +20,9 @@ if (function_exists($action)) {
 
 function getAllClients()
 {
-    $drivers = get();
-    if (isset($drivers)) {
-        require_once VIEWS . "/driver/driverDashboard.php";
+    $clients = get();
+    if (isset($clients)) {
+        require_once VIEWS . "/client/clientDashboard.php";
     } else {
         error("There is a database error, try again.");
     }
