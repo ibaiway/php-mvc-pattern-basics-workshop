@@ -1,11 +1,23 @@
 <?php
 
-require_once MODELS . "employeeModel.php";
+require_once MODELS . "driverModel.php";
 
 //OBTAIN THE ACCION PASSED IN THE URL AND EXECUTE IT AS A FUNCTION
 
 //Keep in mind that the function to be executed has to be one of the ones declared in this controller
 // TODO Implement the logic
+
+$action = "";
+
+if (isset($_REQUEST["action"])) {
+    $action = $_REQUEST["action"];
+}
+
+if (function_exists($action)) {
+    call_user_func($action, $_REQUEST);
+} else {
+    error("Invalid user action");
+}
 
 
 /* ~~~ CONTROLLER FUNCTIONS ~~~ */
@@ -13,15 +25,20 @@ require_once MODELS . "employeeModel.php";
 /**
  * This function calls the corresponding model function and includes the corresponding view
  */
-function getAllEmployees()
+function getAllDrivers()
 {
-    //
+    $drivers = get();
+    if (isset($drivers)) {
+        require_once VIEWS . "/driver/driverDashboard.php";
+    } else {
+        error("There is a database error, try again.");
+    }
 }
 
 /**
  * This function calls the corresponding model function and includes the corresponding view
  */
-function getEmployee($request)
+function getDriver($request)
 {
     //
 }
