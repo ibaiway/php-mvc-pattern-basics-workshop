@@ -31,6 +31,16 @@ function getTrip($request)
     //
 }
 
+function getAllTripsByUser($request)
+{
+    $trips = getByUser($request["id"]);
+    if (isset($trips)) {
+        require_once VIEWS . "/trip/tripDashboard.php";
+    } else {
+        error("There is a database error, try again.");
+    }
+}
+
 /**
  * This function includes the error view with a message
  */

@@ -29,7 +29,7 @@
                 echo "<td class='tg-0lax'>" . $client["id"] . "</td>";
                 echo "<td class='tg-0lax'>" . $client["name"] . "</td>";
                 echo "<td class='tg-0lax'>" . $client["email"] . "</td>";
-                echo "<td class='tg-0lax'>" . $client["trip_count"] . "</td>";
+                echo "<td class='tg-0lax'><a href='?controller=trip&action=getAllTripsByUser&id=" . $client["id"] . "'>" . $client["trip_count"] . "</td>";
                 echo "<td colspan='2' class='tg-0lax'>
                 <a class='btn btn-secondary' href='?controller=client&action=getClient&id=" . $client["id"] . "'>Edit</a>
                 <a class='btn btn-danger' href='?controller=client&action=deleteClient&id=" . $client["id"] . "'>Delete</a>
