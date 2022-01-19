@@ -13,6 +13,7 @@
     <h1>Uver Manager</h1>
     <div class="list-group">
         <a class="list-group-item list-group-item-action" href="?controller=driver&action=getAllDrivers">Driver</a>
+        <a class="list-group-item list-group-item-action" href="?controller=client&action=getAllClients">Client</a>
 </body>
 
 </html>
