@@ -14,6 +14,8 @@
     <div class="list-group">
         <a class="list-group-item list-group-item-action" href="?controller=driver&action=getAllDrivers">Driver</a>
         <a class="list-group-item list-group-item-action" href="?controller=client&action=getAllClients">Client</a>
+        <a class="list-group-item list-group-item-action" href="?controller=trip&action=getAllTrips">Trip</a>
+
 </body>
 
 </html>
