@@ -17,8 +17,8 @@
         <thead>
             <tr>
                 <th class="tg-0pky">ID</th>
-                <th class="tg-0pky">Driver ID</th>
-                <th class="tg-0lax">Client ID</th>
+                <th class="tg-0pky">Driver</th>
+                <th class="tg-0lax">Client</th>
                 <th class="tg-0lax">Length</th>
                 <th class="tg-0lax">Date</th>
 
@@ -29,8 +29,8 @@
             foreach ($trips as $index => $trip) {
                 echo "<tr>";
                 echo "<td class='tg-0lax'>" . $trip["id"] . "</td>";
-                echo "<td class='tg-0lax'>" . $trip["driver_id"] . "</td>";
-                echo "<td class='tg-0lax'>" . $trip["client_id"] . "</td>";
+                echo "<td class='tg-0lax'><a href='?controller=driver&action=getDriver&id=" . $trip["driver_id"] . "'>" . $trip["driver_name"] . "</td>";
+                echo "<td class='tg-0lax'><a href='?controller=client&action=getClient&id=" . $trip["client_id"] . "'>" . $trip["client_name"] . "</td>";
                 echo "<td class='tg-0lax'>" . $trip["length"] . "</td>";
                 echo "<td class='tg-0lax'>" . $trip["date"] . "</td>";
                 echo "<td colspan='2' class='tg-0lax'>
