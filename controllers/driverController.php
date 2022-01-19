@@ -40,7 +40,12 @@ function getAllDrivers()
  */
 function getDriver($request)
 {
-    //
+    $driver = getById($request["id"]);
+    if (isset($drivers)) {
+        require_once VIEWS . "/driver/driver.php";
+    } else {
+        error("There is a database error, try again");
+    }
 }
 
 /**
