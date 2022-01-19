@@ -20,8 +20,8 @@ function getById($id){
 
     try {
         $query->execute();
-        $drivers = $query->fetchAll();
-        return $drivers;
+        $driver = $query->fetch();
+        return $driver;
     } catch (PDOException $e) {
         return [];
     }
