@@ -42,3 +42,18 @@ function update($driver){
         return [false, $e];
     }
 }
+
+function create($driver){
+    $query = conn()->prepare("INSERT INTO drivers (name, phone_number, license_plate) VALUES (:name, :phone_number, :license_plate)");
+
+    $query->bindParam(":name", $driver["name"]);
+    $query->bindParam(":phone_number", $driver["phone_number"]);
+    $query->bindParam(":license_plate", $driver["license_plate"]);
+
+    try {
+        $query->execute();
+        return [true]
+    } catch (PDOException $e) {
+        return [false, $e];
+    }
+}
