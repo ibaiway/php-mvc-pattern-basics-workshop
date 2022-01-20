@@ -60,6 +60,21 @@ function updateDriver($request)
     }
 }
 
+function createDriver($request)
+{
+    if (sizeof($_POST) > 0) {
+        $driver = create($_POST);
+
+        if ($driver[0]) {
+            header("Location: index.php?controller=driver&action=getAllDrivers&alert=success&n&alertText=created");
+        } else {
+            header("Location: index.php?controller=driver&action=getAllDrivers&alert=fail&n&alertText=created");
+        }
+    } else {
+        require_once VIEWS . "/driver/driver.php";
+    }
+}
+
 /**
  * This function includes the error view with a message
  */
