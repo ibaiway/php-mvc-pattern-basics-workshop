@@ -20,6 +20,8 @@
                 $text = "Data saved successfully.";
             } elseif ($request["alertText"] == "created") {
                 $text = "Data created successfully.";
+            } elseif ($request["alertText"] == "deleted") {
+                $text = "Data deleted successfully.";
             }
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 ' . $text . '

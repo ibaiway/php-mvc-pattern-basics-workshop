@@ -75,6 +75,19 @@ function createDriver($request)
     }
 }
 
+function deleteDriver($request)
+{
+
+    if (isset($request["id"])) {
+        $driver = delete($request["id"]);
+        if ($driver[0]) {
+            header("Location: index.php?controller=driver&action=getAllDrivers&alert=success&n&alertText=deleted");
+        } else {
+            header("Location: index.php?controller=driver&action=getAllDrivers&alert=fail&n&alertText=deleted");
+        }
+    }
+}
+
 /**
  * This function includes the error view with a message
  */

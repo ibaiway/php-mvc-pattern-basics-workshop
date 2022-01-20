@@ -52,7 +52,20 @@ function create($driver){
 
     try {
         $query->execute();
-        return [true]
+        return [true];
+    } catch (PDOException $e) {
+        return [false, $e];
+    }
+}
+
+function delete($id){
+    $query = conn()->prepare("DELETE FROM drivers WHERE id = :id;");
+
+    $query->bindParam(":id", $id);
+
+    try {
+        $query->execute();
+        return [true];
     } catch (PDOException $e) {
         return [false, $e];
     }
