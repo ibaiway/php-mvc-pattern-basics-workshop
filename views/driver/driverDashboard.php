@@ -13,6 +13,28 @@
     <style type="text/css">
 
     </style>
+    <?php 
+    switch ($request["alert"]) {
+        case 'success':
+            if ($request["alertText"] == "saved") {
+                $text = "Data saved successfully.";
+            }
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                ' . $text . '
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>';
+            break;
+        case 'fail':
+            # code...
+            break;
+        
+        default:
+            # code...
+            break;
+    }
+    ?>
     <table class="table">
         <thead>
             <tr>
