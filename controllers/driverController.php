@@ -25,7 +25,7 @@ if (function_exists($action)) {
 /**
  * This function calls the corresponding model function and includes the corresponding view
  */
-function getAllDrivers()
+function getAllDrivers($request)
 {
     $drivers = get();
     if (isset($drivers)) {
@@ -45,6 +45,18 @@ function getDriver($request)
         require_once VIEWS . "/driver/driver.php";
     } else {
         error("There is a database error, try again");
+    }
+}
+
+function updateDriver($request)
+{
+    $driver = update($_POST);
+
+    if ($driver[0]) {
+        header("location: index.php?controller=driver&action=getAllDrivers&alert=success&n&alertText=saved");
+    } else {
+        $driver = $_POST;
+        require_once VIEWS . "/driver/driver.php";
     }
 }
 
