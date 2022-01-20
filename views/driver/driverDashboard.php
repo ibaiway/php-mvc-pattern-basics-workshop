@@ -18,6 +18,8 @@
         case 'success':
             if ($request["alertText"] == "saved") {
                 $text = "Data saved successfully.";
+            } elseif ($request["alertText"] == "created") {
+                $text = "Data created successfully.";
             }
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 ' . $text . '
@@ -27,7 +29,14 @@
                 </div>';
             break;
         case 'fail':
-            # code...
+            $text= "There was an error";
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                ' . $text . '
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>';
+            break;
             break;
         
         default:

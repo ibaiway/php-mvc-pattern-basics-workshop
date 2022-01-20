@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary"><?php echo isset($driver['id']) ? "Save Changes" : "Creates" ?></button>
+            <button type="submit" class="btn btn-primary"><?php echo isset($driver['id']) ? "Save Changes" : "Create" ?></button>
             <a id="return" class="btn btn-secondary" href="<?php echo "?controller=driver&action=getAllDrivers"; ?>">Return</a>
         </form>
     </div>
